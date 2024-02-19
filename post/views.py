@@ -2,10 +2,11 @@ from rest_framework.generics import ListAPIView, RetrieveAPIView
 
 from post import models
 from post import serializers
+from plan.models import PlanCode
 
 
 class VipPostsAPIView(ListAPIView):
-    queryset = models.Post.objects.all().filter(plan__detail__code="VIP")
+    queryset = models.Post.objects.all().filter(plan__detail__code=PlanCode.VIP)
     serializer_class = serializers.PostSerializer
 
 
