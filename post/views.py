@@ -12,7 +12,7 @@ class VipPostsAPIView(ListAPIView):
 class PostAPIView(ListAPIView):
     queryset = models.Post.objects.all()
     serializer_class = serializers.PostSerializer
-    filterset_fields = ("subcategory__category", "subcategory", 'district',)
+    filterset_fields = ("subcategory__category", "subcategory", 'district', "subcategory__category__options__values")
 
 
 class PostRetrieveAPIView(RetrieveAPIView):

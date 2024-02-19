@@ -14,7 +14,7 @@ class OptionType(BaseModel):
 class Option(BaseModel):
     title = models.CharField(max_length=256)
     field_type = models.ForeignKey(OptionType, on_delete=models.CASCADE, related_name='options')
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='options')
     
     def __str__(self) -> str:
         return self.title
