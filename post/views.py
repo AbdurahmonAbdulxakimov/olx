@@ -1,3 +1,20 @@
-from django.shortcuts import render
+from rest_framework.generics import ListAPIView, RetrieveAPIView 
 
-# Create your views here.
+from post import models
+from post import serializers
+
+
+class VipPostsAPIView(ListAPIView):
+    queryset = models.Post.objects.all().filter(plan__detail__code="VIP")
+    serializer_class = serializers.PostSerializer
+
+
+class PostAPIView(ListAPIView):
+    queryset = models.Post.objects.all()
+    serializer_class = serializers.PostSerializer
+    filterset_fields = ("subcategory__category", "subcategory", 'district',)
+
+
+class PostRetrieveAPIView(RetrieveAPIView):
+    queryset = models.Post.objects.all()
+    serializer_class = serializers.PostSerializer
